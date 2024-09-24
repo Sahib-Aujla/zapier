@@ -9,7 +9,7 @@
     "@prisma/client": "latest"
   },
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./dist/index.js"
   },
   "devDependencies": {
     "prisma": "latest"
