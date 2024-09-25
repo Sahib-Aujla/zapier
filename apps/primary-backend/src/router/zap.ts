@@ -59,6 +59,48 @@ router.get('/', authmiddleware, async (req, res) => {
     //@ts-ignore
     const id = req.id;
 
+    try {
+        const zaps = await client.zap.findMany({
+            where: {
+                userId: id
+            },
+            include: {
+                actions: {
+                    include: {
+                        type: true
+                    }
+                },
+                trigger: {
+                    include: {
+                        type: true
+                    }
+                }
+            }
+        })
+
+        return res.status(200).json(zaps);
+    } catch (error) {
+        return res.status(500).json({ message: "Server error" });
+    }
+})
+
+router.get('/:zapId', authmiddleware, async (req, res) => {
+    //@ts-ignore
+    const id = req.id;
+    const zapId = req.params.zapId;
+
+    try {
+        const zap = await client.zap.findFirst({
+            where: {
+                id: zapId,
+                userId: id
+            }
+        })
+        if (!zap) return res.status(404).json({ message: "No Zap found" });
+        return res.status(200).json(zap);
+    } catch (error) {
+        return res.status(500).json({ message: "Server error" });
+    }
 })
 
 
