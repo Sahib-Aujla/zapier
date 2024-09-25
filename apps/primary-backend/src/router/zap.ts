@@ -94,6 +94,18 @@ router.get('/:zapId', authmiddleware, async (req, res) => {
             where: {
                 id: zapId,
                 userId: id
+            },
+            include: {
+                actions: {
+                    include: {
+                        type: true
+                    }
+                },
+                trigger: {
+                    include: {
+                        type: true
+                    }
+                }
             }
         })
         if (!zap) return res.status(404).json({ message: "No Zap found" });
