@@ -14,6 +14,7 @@ async function main() {
     producer.connect();
     while (1) {
         const processes = await client.zapRunOutbox.findMany({
+            where:{},
             take: 10
         })
 
