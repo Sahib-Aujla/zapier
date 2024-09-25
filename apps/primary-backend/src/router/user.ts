@@ -68,7 +68,7 @@ router.post('/signin', async (req, res) => {
 
 })
 
-router.get('/user', authmiddleware, async (req, res) => {
+router.get('/', authmiddleware, async (req, res) => {
     try {
         //@ts-ignore
         const id = req.id;
