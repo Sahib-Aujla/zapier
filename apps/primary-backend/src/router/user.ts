@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { SignInSchema, SignUpSchema } from '../zod/schema';
 import { PrismaClient } from '@repo/db';
 import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from '../config';
 
 const router = Router();
 const client = new PrismaClient();
@@ -54,6 +55,10 @@ router.post('/signin', async (req, res) => {
         })
         if (!user) return res.status(403).json({ message: "Incorrect username or password" });
 
+        const token = jwt.sign({
+            id: user.id
+        }, JWT_SECRET);
+        return res.status(200).json({ token: token });
 
     } catch (error) {
         return res.status(500).json({ message: "Server error" });
