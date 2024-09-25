@@ -3,6 +3,7 @@ import { SignInSchema, SignUpSchema } from '../zod/schema';
 import { PrismaClient } from '@repo/db';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from '../config';
+import { authmiddleware } from '../authmiddleware';
 
 const router = Router();
 const client = new PrismaClient();
@@ -67,8 +68,25 @@ router.post('/signin', async (req, res) => {
 
 })
 
-router.get('/user', async (req, res) => {
+router.get('/user', authmiddleware, async (req, res) => {
+    try {
+        //@ts-ignore
+        const id = req.id;
 
+        const user = await client.user.findFirst({
+            where: {
+                id
+            },
+            select: {
+                email: true,
+                name: true
+            }
+        })
+
+        return res.status(200).json({ user: user });
+    } catch (error) {
+        return res.status(500).json({ message: "Server error" });
+    }
 })
 
 
