@@ -2,8 +2,9 @@
 import Image from "next/image";
 import React from "react";
 import PrimaryButton from "../buttons/PrimaryButton";
-
+import { useRouter } from "next/navigation";
 const Hero = () => {
+  const router=useRouter();
   return (
     <div className=" flex justify-center items-center mt-20">
       <div className="flex w-[85%] ">
@@ -15,7 +16,7 @@ const Hero = () => {
             your imagination.
           </div>
           <div className="w-1/2 mt-10">
-            <PrimaryButton onClick={() => {}} type="big">
+            <PrimaryButton onClick={() => {router.push('/signup')}} type="big">
               Start free with email
             </PrimaryButton>
           </div>
