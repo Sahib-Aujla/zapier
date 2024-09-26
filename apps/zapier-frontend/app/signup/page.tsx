@@ -2,8 +2,7 @@ import SignUp from "@/components/SignUp";
 import React from "react";
 
 const Signup = () => {
-  return;
-  <SignUp />;
+  return <SignUp />;
 };
 
 export default Signup;
