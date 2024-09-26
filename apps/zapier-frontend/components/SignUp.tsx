@@ -1,11 +1,16 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { CheckFeature } from "./CheckFeature";
 import { Input } from "./Input";
 import PrimaryButton from "./buttons/PrimaryButton";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 const SignUp = () => {
   const router = useRouter();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div className="flex w-full justify-center items-center ">
       <div className="w-[80%] flex justify-center pt-[5rem] max-w-4xl ">
@@ -22,22 +27,44 @@ const SignUp = () => {
           <CheckFeature label={"14-day trial of premium features & apps"} />
         </div>
         <div className="flex-1 pt-6 pb-6 mt-12 px-4 border rounded">
-          <Input label={"Name"} placeholder="Your Name" onChange={(e) => {}} />
           <Input
-            onChange={(e) => {}}
+            label={"Name"}
+            placeholder="Your Name"
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+          <Input
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
             label={"Email"}
             type="text"
             placeholder="Your Email"
           ></Input>
           <Input
-            onChange={(e) => {}}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             label={"Password"}
             type="password"
             placeholder="Password"
           ></Input>
 
           <div className="pt-4">
-            <PrimaryButton onClick={async () => {}} type="big">
+            <PrimaryButton
+              onClick={async () => {
+                const formData = new FormData();
+                formData.append("name", name);
+                formData.append("email", email);
+                formData.append("password", password);
+                const response=await axios.post(``,formData);
+                const data=await response.data;
+                console.log(data);
+                router.push("/signin");
+              }}
+              type="big"
+            >
               Get started free
             </PrimaryButton>
           </div>
