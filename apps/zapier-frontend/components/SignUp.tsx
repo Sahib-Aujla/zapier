@@ -54,17 +54,20 @@ const SignUp = () => {
           <div className="pt-4">
             <PrimaryButton
               onClick={async () => {
-                const formData = new FormData();
-                formData.append("name", name);
-                formData.append("email", email);
-                formData.append("password", password);
-                const response = await axios.post(
-                  new String(process.env.NEXT_PUBLIC_BACKEND_URL) as string,
-                  formData
-                );
-                const data = await response.data;
-                console.log(data);
-                router.push("/signin");
+                try {
+                  const response = await axios.post(
+                    new String(process.env.NEXT_PUBLIC_BACKEND_URL) as string,
+                    {
+                      username: email,
+                      password,
+                      name,
+                    }
+                  );
+                  console.log(await response.data);
+                  router.push("/signin");
+                } catch (error) {
+                  console.log(error);
+                }
               }}
               type="big"
             >
