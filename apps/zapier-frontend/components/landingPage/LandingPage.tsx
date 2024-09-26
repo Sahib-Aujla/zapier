@@ -3,7 +3,7 @@ import Hero from "./Hero";
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className="w-full pt-12">
       <Hero />
     </div>
   );
