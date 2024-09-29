@@ -1,13 +1,30 @@
-import React from 'react'
+"use client";
+import React from "react";
+import DarkButton from "./buttons/DarkButton";
+import ZapTable from "./ZapTable";
 
 //needs one button and one table
 // one button to show create and one to show the zaps
 const DashBoard = () => {
   return (
-    <div>DashBoard</div>
-  )
-}
+    <div className="">
+      <div className="w-full flex flex-col justify-center items-center pt-16">
+        <div className="flex max-w-2xl w-full justify-between">
+          <div className="text-3xl font-bold">My Zaps</div>
+          <div>
+            <DarkButton type="big" onClick={() => {}}>
+              + Create
+            </DarkButton>
+          </div>
+        </div>
+        <div className="max-w-2xl w-full pt-10">
+          <ZapTable />
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default DashBoard
+export default DashBoard;
 
 // 3d4592

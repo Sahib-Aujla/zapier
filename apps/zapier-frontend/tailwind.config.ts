@@ -17,7 +17,8 @@ const config: Config = {
           100: "#ebe9df"
         },
         purple: {
-          700: "#3d4592"
+          700: "#3d4592",
+          500:"#695be8"
         }
 
       },

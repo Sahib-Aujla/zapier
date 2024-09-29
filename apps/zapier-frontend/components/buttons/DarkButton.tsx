@@ -11,7 +11,7 @@ const DarkButton = ({
 }) => {
   return (
     <div
-      className={`${type === "small" ? "text-sm" : "text-xl"} ${type === "small" ? "px-8 py-[6px]" : "px-10 py-3"} cursor-pointer hover:shadow-lg bg-purple-700 text-white rounded-full text-center font-semibold flex justify-center flex-col`}
+      className={`${type === "small" ? "text-sm" : "text-xl"} ${type === "small" ? "px-8 py-[6px]" : "px-10 py-3"} cursor-pointer hover:shadow-lg bg-purple-500 hover:bg-purple-700 text-white rounded text-center font-semibold flex justify-center flex-col`}
       onClick={onClick}
     >
       {children}
