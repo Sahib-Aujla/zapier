@@ -64,19 +64,20 @@ const ZapTable = () => {
                 <div className="flex-1 flex">
                   <img
                     src={z.trigger.type.image}
-                    className="w-[30px] h-[30px]"
-                  />{" "}
+                    className="w-[30px] h-[30px] mx-2"
+                  />
+
                   {z.actions.map((x, j) => (
                     <img
                       key={j}
                       src={x.type.image}
-                      className="w-[30px] h-[30px]"
+                      className="w-[30px] h-[30px] mr-2"
                     />
                   ))}
                 </div>
                 <div className="flex-1">{z.id}</div>
                 <div className="flex-1">Nov 13, 2023</div>
-                {/* <div className="flex-1">{`${HOOKS_URL}/hooks/catch/1/${z.id}`}</div> */}
+                {/* <div className="flex-1">{`http://localhost:3002/hooks/catch/1/${z.id}`}</div> */}
                 <div className="flex-1">
                   <LinkButton
                     onClick={() => {
