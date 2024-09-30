@@ -6,7 +6,7 @@ router.get('/available', async (req, res) => {
     try {
         const availableActions = await client.availableAction.findMany();
 
-        return res.send(200).json(availableActions);
+        return res.status(200).json(availableActions);
     } catch (error) {
         return res.status(500).json({ "message": "Server Error" });
     }

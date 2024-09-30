@@ -6,7 +6,7 @@ router.get('/available', async (req, res) => {
     try {
         const availableTriggers = await client.availableTrigger.findMany();
 
-        return res.send(200).json(availableTriggers);
+        return res.status(200).json(availableTriggers);
     } catch (error) {
         return res.status(500).json({ "message": "Server Error" });
     }
